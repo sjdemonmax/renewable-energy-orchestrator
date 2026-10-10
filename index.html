@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Renewable Energy Orchestrator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <span class="pulse-dot"></span>
+                <h1>Renewable Energy Orchestrator <span class="badge">Agentic AI</span></h1>
+            </div>
+            <div class="time-display">
+                <span id="current-time">00:00</span>
+                <span class="tick-info">Tick: <span id="tick-count">0</span></span>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- Left Panel: Telemetry -->
+            <section class="panel telemetry-panel">
+                <h2>Asset Telemetry</h2>
+                
+                <div class="card-grid">
+                    <div class="stat-card" id="card-solar">
+                        <h3>Solar Generation (5 Farms)</h3>
+                        <div class="value"><span id="val-solar">150</span> MW</div>
+                        <div class="progress-bar"><div class="fill" id="bar-solar" style="width: 75%"></div></div>
+                        <div class="subtext">Forecast: <span id="forecast-solar">Clear</span></div>
+                    </div>
+
+                    <div class="stat-card" id="card-wind">
+                        <h3>Wind Generation (3 Farms)</h3>
+                        <div class="value"><span id="val-wind">80</span> MW</div>
+                        <div class="progress-bar"><div class="fill" id="bar-wind" style="width: 60%"></div></div>
+                        <div class="subtext">Forecast: <span id="forecast-wind">Steady</span></div>
+                    </div>
+
+                    <div class="stat-card highlight" id="card-battery">
+                        <h3>Battery Storage (2 Systems)</h3>
+                        <div class="value"><span id="val-battery">60</span>% SOC</div>
+                        <div class="progress-bar"><div class="fill" id="bar-battery" style="width: 60%"></div></div>
+                        <div class="subtext">Status: <span id="status-battery">Idle</span></div>
+                    </div>
+
+                    <div class="stat-card" id="card-grid">
+                        <h3>Grid Demand</h3>
+                        <div class="value"><span id="val-demand">200</span> MW</div>
+                        <div class="progress-bar"><div class="fill" id="bar-demand" style="width: 50%"></div></div>
+                        <div class="subtext">Price: $<span id="val-price">45</span>/MWh</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Center Panel: Agentic Brain -->
+            <section class="panel brain-panel">
+                <h2>Agentic Decision Engine</h2>
+                
+                <div class="strategy-container">
+                    <h3>Current Optimality Criteria</h3>
+                    <div class="criteria-row">
+                        <label>Profit</label>
+                        <div class="progress-bar mini"><div class="fill profit-fill" id="crit-profit" style="width: 50%"></div></div>
+                    </div>
+                    <div class="criteria-row">
+                        <label>Grid Stability</label>
+                        <div class="progress-bar mini"><div class="fill stability-fill" id="crit-stability" style="width: 50%"></div></div>
+                    </div>
+                    <div class="criteria-row">
+                        <label>Asset Lifespan (Battery)</label>
+                        <div class="progress-bar mini"><div class="fill lifespan-fill" id="crit-lifespan" style="width: 50%"></div></div>
+                    </div>
+                </div>
+
+                <div class="log-container" id="agent-log">
+                    <div class="log-entry system">System initialized. Awaiting first tick...</div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Controls -->
+            <section class="panel control-panel">
+                <h2>Simulation Controls</h2>
+                
+                <div class="main-controls">
+                    <button id="btn-tick" class="primary-btn">Next 15m Tick</button>
+                    <button id="btn-auto" class="secondary-btn">Auto Run (Off)</button>
+                </div>
+
+                <div class="chaos-container">
+                    <h3>Inject Scenarios (Uncertainty)</h3>
+                    <button id="btn-chaos-cloud" class="chaos-btn">☁️ Cloud Cover (Drop Solar)</button>
+                    <button id="btn-chaos-wind" class="chaos-btn">💨 Wind Surge (Increase Wind)</button>
+                    <button id="btn-chaos-spike" class="chaos-btn">📈 Price Spike (High Market Price)</button>
+                    <button id="btn-chaos-demand" class="chaos-btn">🏭 Industrial Surge (High Demand)</button>
+                </div>
+
+                <div class="action-summary">
+                    <h3>Last Action Cluster</h3>
+                    <ul id="last-action-list">
+                        <li>None</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="engine.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>
