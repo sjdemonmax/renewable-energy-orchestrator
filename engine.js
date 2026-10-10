@@ -91,8 +91,10 @@ class ActionOrchestrator {
                 state.battery.status = 'Discharging';
             } else if (criteria.stability > 80 && state.battery.soc > 10) {
                 // Emergency discharge for stability
-                actions.push(`Emergency Discharge Battery (Max)`);
-                state.battery.soc -= (state.battery.maxDischargeRate / state.battery.capacity) * 100;
+                let maxPossibleDischarge = (state.battery.soc / 100) * state.battery.capacity;
+                let dischargeAmt = Math.min(state.battery.maxDischargeRate, maxPossibleDischarge);
+                actions.push(`Emergency Discharge Battery (${dischargeAmt.toFixed(1)} MW)`);
+                state.battery.soc -= (dischargeAmt / state.battery.capacity) * 100;
                 state.battery.status = 'Discharging';
             } else {
                 // Buy from grid
