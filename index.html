@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agentic Renewable Energy Orchestrator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,96 +12,143 @@
         <header>
             <div class="logo">
                 <span class="pulse-dot"></span>
-                <h1>Renewable Energy Orchestrator <span class="badge">Agentic AI</span></h1>
+                <h1>Renewable Energy Orchestrator <span class="badge">Agentic AI • D3/F3</span></h1>
+            </div>
+            <div class="system-status-indicator">
+                <span class="status-pill" id="system-status">● AUTONOMOUS ONLINE</span>
             </div>
             <div class="time-display">
-                <span id="current-time">00:00</span>
-                <span class="tick-info">Tick: <span id="tick-count">0</span></span>
+                <span id="current-time">08:00</span>
+                <span class="tick-info">15m Window | Tick: <span id="tick-count">0</span></span>
             </div>
         </header>
 
         <main class="dashboard-grid">
             <!-- Left Panel: Telemetry -->
             <section class="panel telemetry-panel">
-                <h2>Asset Telemetry</h2>
+                <div class="panel-header">
+                    <h2>Asset Telemetry</h2>
+                    <span class="panel-subtitle">Real-Time Ingestion</span>
+                </div>
                 
                 <div class="card-grid">
                     <div class="stat-card" id="card-solar">
-                        <h3>Solar Generation (5 Farms)</h3>
-                        <div class="value"><span id="val-solar">150</span> MW</div>
+                        <div class="card-header">
+                            <h3>Solar Generation (5 Farms)</h3>
+                            <span class="card-badge" id="badge-solar">Clear Sky</span>
+                        </div>
+                        <div class="value"><span id="val-solar">150</span> <span class="unit">MW</span></div>
                         <div class="progress-bar"><div class="fill" id="bar-solar" style="width: 75%"></div></div>
-                        <div class="subtext">Forecast: <span id="forecast-solar">Clear</span></div>
+                        <div class="subtext">Status: <span id="forecast-solar">Clear Sky</span> (200 MW Cap)</div>
                     </div>
 
                     <div class="stat-card" id="card-wind">
-                        <h3>Wind Generation (3 Farms)</h3>
-                        <div class="value"><span id="val-wind">80</span> MW</div>
-                        <div class="progress-bar"><div class="fill" id="bar-wind" style="width: 60%"></div></div>
-                        <div class="subtext">Forecast: <span id="forecast-wind">Steady</span></div>
+                        <div class="card-header">
+                            <h3>Wind Generation (3 Farms)</h3>
+                            <span class="card-badge" id="badge-wind">Steady</span>
+                        </div>
+                        <div class="value"><span id="val-wind">80</span> <span class="unit">MW</span></div>
+                        <div class="progress-bar"><div class="fill" id="bar-wind" style="width: 67%"></div></div>
+                        <div class="subtext">Status: <span id="forecast-wind">Steady</span> (120 MW Cap)</div>
                     </div>
 
                     <div class="stat-card highlight" id="card-battery">
-                        <h3>Battery Storage (2 Systems)</h3>
-                        <div class="value"><span id="val-battery">60</span>% SOC</div>
+                        <div class="card-header">
+                            <h3>Battery Storage (2 Systems)</h3>
+                            <span class="card-badge purple" id="badge-battery">Standby</span>
+                        </div>
+                        <div class="value"><span id="val-battery">60.0</span><span class="unit">% SOC</span></div>
                         <div class="progress-bar"><div class="fill" id="bar-battery" style="width: 60%"></div></div>
-                        <div class="subtext">Status: <span id="status-battery">Idle</span></div>
+                        <div class="subtext">Mode: <span id="status-battery">Standby</span> (100 MWh | ±20 MW)</div>
                     </div>
 
                     <div class="stat-card" id="card-grid">
-                        <h3>Grid Demand</h3>
-                        <div class="value"><span id="val-demand">200</span> MW</div>
+                        <div class="card-header">
+                            <h3>Regional Grid & Market</h3>
+                            <span class="card-badge green" id="badge-grid">Normal</span>
+                        </div>
+                        <div class="value"><span id="val-demand">200</span> <span class="unit">MW Load</span></div>
                         <div class="progress-bar"><div class="fill" id="bar-demand" style="width: 50%"></div></div>
-                        <div class="subtext">Price: $<span id="val-price">45</span>/MWh</div>
+                        <div class="subtext">Wholesale LMP: $<span id="val-price">45.00</span> / MWh</div>
                     </div>
                 </div>
             </section>
 
             <!-- Center Panel: Agentic Brain -->
             <section class="panel brain-panel">
-                <h2>Agentic Decision Engine</h2>
+                <div class="panel-header">
+                    <h2>Agentic Decision Engine</h2>
+                    <span class="panel-subtitle">Multi-Agent Chain of Thought</span>
+                </div>
                 
                 <div class="strategy-container">
-                    <h3>Current Optimality Criteria</h3>
+                    <h3>Dynamic Optimality Criteria (Co-Optimization)</h3>
                     <div class="criteria-row">
-                        <label>Profit</label>
+                        <div class="crit-label-group">
+                            <label>Profit Maximization (LMP Arbitrage)</label>
+                            <span class="crit-val" id="val-crit-profit">50%</span>
+                        </div>
                         <div class="progress-bar mini"><div class="fill profit-fill" id="crit-profit" style="width: 50%"></div></div>
                     </div>
                     <div class="criteria-row">
-                        <label>Grid Stability</label>
+                        <div class="crit-label-group">
+                            <label>Grid Stability (N-1 Reliability)</label>
+                            <span class="crit-val" id="val-crit-stability">50%</span>
+                        </div>
                         <div class="progress-bar mini"><div class="fill stability-fill" id="crit-stability" style="width: 50%"></div></div>
                     </div>
                     <div class="criteria-row">
-                        <label>Asset Lifespan (Battery)</label>
+                        <div class="crit-label-group">
+                            <label>Asset Lifespan (Thermal & Degradation Guard)</label>
+                            <span class="crit-val" id="val-crit-lifespan">50%</span>
+                        </div>
                         <div class="progress-bar mini"><div class="fill lifespan-fill" id="crit-lifespan" style="width: 50%"></div></div>
                     </div>
                 </div>
 
                 <div class="log-container" id="agent-log">
-                    <div class="log-entry system">System initialized. Awaiting first tick...</div>
+                    <div class="log-entry system">[08:00] System initialized. Agents standing by for dispatch loop...</div>
                 </div>
             </section>
 
             <!-- Right Panel: Controls -->
             <section class="panel control-panel">
-                <h2>Simulation Controls</h2>
+                <div class="panel-header">
+                    <h2>Simulation Controls</h2>
+                    <span class="panel-subtitle">Operator Console</span>
+                </div>
                 
                 <div class="main-controls">
-                    <button id="btn-tick" class="primary-btn">Next 15m Tick</button>
+                    <button id="btn-tick" class="primary-btn">Step Next 15m Tick</button>
                     <button id="btn-auto" class="secondary-btn">Auto Run (Off)</button>
                 </div>
 
                 <div class="chaos-container">
-                    <h3>Inject Scenarios (Uncertainty)</h3>
-                    <button id="btn-chaos-cloud" class="chaos-btn">☁️ Cloud Cover (Drop Solar)</button>
-                    <button id="btn-chaos-wind" class="chaos-btn">💨 Wind Surge (Increase Wind)</button>
-                    <button id="btn-chaos-spike" class="chaos-btn">📈 Price Spike (High Market Price)</button>
-                    <button id="btn-chaos-demand" class="chaos-btn">🏭 Industrial Surge (High Demand)</button>
+                    <h3>External Shocks & Perturbations</h3>
+                    <button id="btn-chaos-cloud" class="chaos-btn" data-type="cloud">
+                        <span class="icon">☁️</span> <span class="btn-text">Cloud Cover (-70% Solar)</span>
+                        <span class="toggle-indicator">OFF</span>
+                    </button>
+                    <button id="btn-chaos-wind" class="chaos-btn" data-type="wind">
+                        <span class="icon">💨</span> <span class="btn-text">Wind Surge (Max 120 MW)</span>
+                        <span class="toggle-indicator">OFF</span>
+                    </button>
+                    <button id="btn-chaos-spike" class="chaos-btn" data-type="spike">
+                        <span class="icon">📈</span> <span class="btn-text">Price Spike ($350/MWh)</span>
+                        <span class="toggle-indicator">OFF</span>
+                    </button>
+                    <button id="btn-chaos-demand" class="chaos-btn" data-type="demand">
+                        <span class="icon">🏭</span> <span class="btn-text">Industrial Surge (+120 MW)</span>
+                        <span class="toggle-indicator">OFF</span>
+                    </button>
+
+                    <button id="btn-chaos-reset" class="reset-btn">🔄 Reset Scenarios (Baseline)</button>
                 </div>
 
                 <div class="action-summary">
-                    <h3>Last Action Cluster</h3>
+                    <h3>Dispatched Action Cluster (F3)</h3>
                     <ul id="last-action-list">
-                        <li>None</li>
+                        <li>System Initialized. Baseline Ready.</li>
                     </ul>
                 </div>
             </section>
