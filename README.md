@@ -22,7 +22,7 @@ This prototype is a pure client-side web application designed for maximum portab
 **To run the project:**
 1. Clone this repository to your local machine:
    ```bash
-   git clone <YOUR-GITHUB-REPO-URL>
+   git clone https://github.com/sjdemonmax/renewable-energy-orchestrator.git
    cd renewable-orchestrator
    ```
 2. Open the `index.html` file in any modern web browser (Chrome, Firefox, Safari, Edge).
